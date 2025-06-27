@@ -1,1 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEN‑B Project</title>
+  <!--
+    ✔ Ready for GitHub Pages
+      1. Keep this file at the repo root as index.html
+      2. Put your banner image in assets/hero.jpg (or edit the src below)
+      3. Settings ▸ Pages ▸ Branch = main, Folder = /root
+  -->
+  <style>
+    /* ---------- Design Tokens ---------- */
+    :root{
+      --blue:#0066a1;
+      --dark:#2c3e50;
+      --light:#fdfdfd;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    body{font-family:Arial,Helvetica,sans-serif;line-height:1.6;color:#333;background:var(--light)}
+
+    /* ---------- Header & Nav ---------- */
+    header{background:var(--dark);color:#fff}
+    .container{max-width:1200px;margin:0 auto;padding:0 1rem}
+
+    header .container{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+    header h1{font-size:1.5rem}
+
+    nav ul{list-style:none;display:flex;gap:1rem}
+    nav a{color:#fff;text-decoration:none;font-weight:bold}
+    nav a:hover{opacity:.85}
+
+    /* ---------- Sections ---------- */
+    main.container{max-width:none;padding:0}
+    section{padding:2rem 1rem}
+    #senb,#hep,#contact{display:none}
+
+    /* ---------- Hero ---------- */
+    .hero{position:relative;width:100%}
+    .hero img{display:block;width:100%;height:100vh;object-fit:cover;object-fit:cover}
+    .hero-caption{position:absolute;bottom:0;left:0;width:100%;background:rgba(44,62,80,.75);color:#fff;text-align:center;padding:1rem 1.5rem}
+    .hero-caption h2{margin-bottom:.5rem}
+
+    /* Typography */
+    h2{color:var(--dark);margin-top:0}
+    h3{color:var(--blue);margin-top:1.2rem}
+    ul,ol{margin-left:1.2rem;margin-top:.5rem}
+    li{margin-bottom:.4rem}
+
+    /* ---------- Footer ---------- */
+    footer{background:var(--dark);color:#fff;text-align:center;padding:1rem;margin-top:2rem}
+
+    /* ---------- Chatbot ---------- */
+    .chat-btn{position:fixed;bottom:20px;right:20px;width:56px;height:56px;border:none;border-radius:50%;background:var(--blue);color:#fff;font-size:24px;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.3);z-index:1000}
+    .chat-window{position:fixed;bottom:90px;right:20px;width:300px;max-height:420px;background:#fff;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,.2);display:none;flex-direction:column;overflow:hidden;z-index:1000}
+    .chat-header{background:var(--blue);color:#fff;padding:0.5rem;text-align:center;font-weight:bold}
+    .chat-messages{flex:1;padding:0.5rem;overflow-y:auto;font-size:0.9rem}
+    .chat-messages div{margin-bottom:0.5rem}
+    .chat-input{display:flex;border-top:1px solid #ddd}
+    .chat-input input{flex:1;border:none;padding:0.5rem;font-size:0.9rem}
+    .chat-input button{border:none;background:var(--blue);color:#fff;padding:0.5rem 1rem;cursor:pointer}
+  </style>
+
+  <script>
+    /* ------------- Navigation ------------- */
+    function showSection(id){
+      document.querySelectorAll('main section').forEach(s=>s.style.display='none');
+      const target=document.getElementById(id);
+      if(target){target.style.display='block';}
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    /* ------------- Simple FAQ Chatbot ------------- */
+    const faqs=[
+      {q:/\bwhat is hepatitis b\b/i,a:"Hepatitis B is a viral infection that attacks the liver and can cause acute and chronic disease."},
+      {q:/\btransmit|spread|transmission/i,a:"HBV is commonly transmitted at birth, through contact with infected blood or body fluids, unprotected sex, or sharing needles."},
+      {q:/\bvaccin|vaccine/i,a:"Yes. A safe and effective vaccine has been available since 1982 and is administered at birth with booster doses."},
+      {q:/\bsen-?b project/i,a:"The SEN‑B project follows nearly 1,000 adults in Dakar to study HBV treatment outcomes and prevention strategies."},
+      {q:/\bcoordinator|contact/i,a:"Key contacts: Prof. Gilles Wandeler, Prof. Moussa Seydi, Dr. Adrià Ramirez Mena and Ms. Bintou Fall."},
+      {q:/\bparticipate|enrol|join/i,a:"If you're interested in participating, please reach out to the Infectious and Tropical Diseases Unit (SMIT) at CHNU Fann."}
+    ];
+
+    function toggleChat(){
+      const win=document.getElementById('chatWin');
+      if(!win) return; // safety guard
+      win.style.display=win.style.display==='flex'?'none':'flex';
+    }
+    function sendChat(){
+      const input=document.getElementById('chatInput');
+      const msg=input.value.trim();
+      if(!msg) return;
+      addMessage('You',msg);
+      let response="Sorry, I don't have an answer yet. Please contact the SEN‑B team.";
+      for(const f of faqs){if(f.q.test(msg)){response=f.a;break;}}
+      addMessage('Bot',response);
+      input.value='';
+    }
+    function addMessage(sender,text){
+      const box=document.getElementById('chatMsgs');
+      const div=document.createElement('div');
+      div.innerHTML='<strong>'+sender+':</strong> '+text;
+      box.appendChild(div);
+      box.scrollTop=box.scrollHeight;
+    }
+
+    document.addEventListener('DOMContentLoaded',()=>{
+      showSection('home');
+      const input=document.getElementById('chatInput');
+      if(input){
+        input.addEventListener('keypress',e=>{if(e.key==='Enter')sendChat();});
+      }
+    });
+  </script>
+</head>
+<body>
+  <!-- ---------- Header ---------- -->
+  <header>
+    <div class="container">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Flag_of_Senegal.svg" alt="Flag of Senegal" style="height:24px;border-radius:2px;box-shadow:0 2px 4px rgba(0,0,0,.2)" />
+      <h1>SEN‑B Project</h1>
+      <nav style="margin-left:auto">
+        <ul>
+          <li><a href="#" onclick="showSection('home');return false;">Home</a></li>
+          <li><a href="#" onclick="showSection('senb');return false;">About SEN‑B Project</a></li>
+          <li><a href="#" onclick="showSection('hep');return false;">About Hepatitis B</a></li>
+          <li><a href="#" onclick="showSection('contact');return false;">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ---------- Main Content ---------- -->
+  <main class="container">
+    <!-- Home / Landing -->
+    <section id="home">
+      <div class="hero">
+        <!-- Replace path if needed -->
+        <img src="https://raw.githubusercontent.com/BinouB/graph_final_project/main/real_istock-1439770412-foie-1668424706.jpg" alt="Hepatitis B virus attacking the liver" />
+        <div class="hero-caption">
+          <h2>Welcome</h2>
+          <p>Discover our commitment to tackling hepatitis B in Senegal through the SEN‑B cohort study.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About SEN‑B Project -->
+    <section id="senb">
+      <h2>About the SEN‑B Project</h2>
+      <p>The SEN‑B cohort follows nearly 1,000 adults with HBV mono‑infection or HIV/HBV co‑infection at the Infectious and Tropical Diseases Unit (SMIT) of Fann University Hospital (CHNU Fann) in Dakar, Senegal.</p>
+      <h3>Specific Objectives</h3>
+      <ul>
+        <li>Evaluate eligibility for antiviral treatment and monitor clinical &amp; virological response.</li>
+        <li>Determine hepatocellular carcinoma (HCC) incidence and develop a predictive screening score.</li>
+        <li>Investigate intra‑hepatic determinants of HBV and validate peripheral biomarkers of cccDNA.</li>
+        <li>Assess HBV knowledge and treatment perceptions via socio‑anthropological study.</li>
+        <li>Monitor SARS‑CoV‑2 seroprevalence trends within the cohort.</li>
+      </ul>
+    </section>
+
+    <!-- About Hepatitis B -->
+    <section id="hep">
+      <h2>About Hepatitis B</h2>
+      <h3>Key Facts</h3>
+      <ul>
+        <li>Hepatitis B is a viral infection that attacks the liver and can cause both acute and chronic disease.</li>
+        <li>Transmission occurs most commonly from mother to child, in early childhood, or via contact with infected blood/body fluids.</li>
+        <li>WHO estimates 254 million people lived with chronic HBV in 2022; ~1.2 million new infections each year.</li>
+        <li>In 2022, HBV caused ≈1.1 million deaths (mostly cirrhosis or HCC).</li>
+        <li>Safe and effective vaccines are available.</li>
+      </ul>
+
+      <h3>Overview</h3>
+      <p>Hepatitis B is a liver infection caused by HBV. It can be acute (short‑term) or chronic (long‑term) and may lead to cirrhosis or liver cancer. The virus spreads through infectious body fluids (blood, saliva, vaginal secretions, semen) and perinatal transmission. Vaccination shortly after birth offers near‑complete protection.</p>
+      <p>Highest burden: Western Pacific (97 M) and Africa (65 M);
+      South‑East Asia 61 M, Eastern Mediterranean 15 M, Europe 11 M, Americas 5 M.</p>
+
+      <h3>Transmission</h3>
+      <ul>
+        <li>Perinatal &amp; early‑childhood exposure in high‑endemic areas.</li>
+        <li>Needle sticks, tattoos, piercings, reuse of contaminated equipment.</li>
+        <li>Unprotected sex with an infected partner.</li>
+        <li>Virus survives ≥7 days outside body; incubation 30–180 days.</li>
+        <li>Chronic infection: &lt;5% in adults, ~95% in infants → vaccination priority.</li>
+      </ul>
+
+      <h3>Symptoms</h3>
+      <ul>
+        <li>Often asymptomatic when newly infected.</li>
+        <li>Possible acute illness: jaundice, dark urine, fatigue, nausea, abdominal pain.</li>
+        <li>Severe cases can progress to liver failure or death.</li>
+      </ul>
+
+      <h3>HBV–HIV Coinfection</h3>
+      <p>~1 % of people with HBV (≈2.7 M) also have HIV; conversely HBV prevalence among people with HIV is 7.4 %. Tenofovir‑based ART treats both infections.</p>
+
+      <h3>Diagnosis</h3>
+      <ul>
+        <li>Laboratory tests differentiate acute vs. chronic infection and assess liver damage.</li>
+        <li>WHO: test all donated blood; only 13 % of people with HBV knew their status in 2022, 3 % were on treatment.</li>
+        <li>Testing priorities: blood donors, pregnant women, high‑risk groups.</li>
+      </ul>
+
+      <h3>Treatment</h3>
+      <ul>
+        <li>No specific therapy for acute HBV; supportive care.</li>
+        <li>Chronic HBV: oral antivirals (tenofovir, entecavir) slow cirrhosis, cut cancer risk, require lifelong adherence.</li>
+        <li>WHO guidelines: &gt;50 % of chronic patients should receive treatment, context dependent.</li>
+      </ul>
+
+      <h3>Prevention</h3>
+      <ul>
+        <li>Birth‑dose vaccine within 24 h, then 2–3 doses ≥4 weeks apart.</li>
+        <li>Protection ≥20 years, likely lifelong; boosters generally unnecessary.</li>
+        <li>Antivirals + vaccine prevent mother‑to‑child transmission.</li>
+        <li>Safer sex, needle safety, hand hygiene, HCW vaccination.</li>
+      </ul>
+
+      <h3>WHO Action</h3>
+      <p>The Global Health Sector Strategies (2022–2030) aim to eliminate HIV, viral hepatitis, and STIs by 2030. World Hepatitis Day 2023 theme: “One Life, One Liver”.</p>
+    </section>
+
+    <!-- Contact -->
+   <section id="contact">
+  <h2>Contact Us</h2>
+  <ul>
+    <li><strong>Prof. Gilles Wandeler</strong> – Head, Infectious Diseases, Bern University Hospital – 
+        <a href="mailto:gilles.wandeler@unibe.ch">gilles.wandeler@unibe.ch</a></li>
+    <li><strong>Prof. Moussa Seydi</strong> – Head, Infectious Diseases, CHNU Fann, Dakar – 
+        <a href="mailto:seydi.moussa@gmail.com">seydi.moussa@gmail.com</a></li>
+    <li><strong>Dr. Adrià Ramirez Mena</strong> – Researcher in Epidemiology, University of Bern – 
+        <a href="mailto:adria.ramirez@posteo.net">adria.ramirez@posteo.net</a></li>
+    <li><strong>Bintou Fall, MSc</strong> – Biologist, Research Assistant in Infectious Diseases, CHNU Fann – 
+        <a href="mailto:bintoufall2298@gmail.com">bintoufall2298@gmail.com</a></li>
+  </ul>
+</section>
+
 
