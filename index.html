@@ -22,8 +22,12 @@
 
     /* Hero styles */
     #home{padding:0;margin:0}
-    .hero{width:100%;margin:0}
-    .hero img{display:block;width:100%;height:auto;max-width:none;border-radius:0;box-shadow:none}
+    .hero{width:100%;margin:0;position:relative}
+    .hero img{display:block;width:100%;height:70vh;max-width:none;object-fit:cover;border-radius:0;box-shadow:none}
+    /* Caption anchored flush at the bottom of the hero so it is always visible */
+    .hero-caption{position:absolute;bottom:0;left:0;width:100%;background:rgba(44,62,80,.75);color:#fff;padding:1rem 1.5rem;text-align:center}
+    .hero-caption h2{margin:0 0 .5rem 0;color:#fff}
+    .hero-caption p{margin:0;font-size:1rem;color:#f0f0f0}
 
     /* Typography & colours */
     h2{color:#2c3e50;margin-top:0}
@@ -108,10 +112,10 @@
     <section id="home">
       <div class="hero">
         <img src="https://raw.githubusercontent.com/BinouB/graph_final_project/main/real_istock-1439770412-foie-1668424706.jpg" alt="Hepatitis B virus attacking the liver">
-      </div>
-      <div style="padding:2rem 1rem;max-width:800px;margin:0 auto">
-        <h2>Welcome</h2>
-        <p>Discover our commitment to tackling hepatitis B in Senegal through the SEN‑B cohort study.</p>
+        <div class="hero-caption">
+          <h2>Welcome</h2>
+          <p>Discover our commitment to tackling hepatitis B in Senegal through the SEN‑B cohort study.</p>
+        </div>
       </div>
     </section>
 
@@ -137,31 +141,66 @@
         <h2>About Hepatitis B</h2>
         <h3>Key Facts</h3>
         <ul>
-          <li>Hepatitis B is a viral infection that attacks the liver and can cause acute and chronic disease.</li>
-          <li>WHO estimates 254 million people were chronically infected in 2022, with 1.2 million new infections each year.</li>
-          <li>In 2022, hepatitis B caused ~1.1 million deaths, mainly from cirrhosis and liver cancer.</li>
-          <li>Safe and effective vaccines have been available since 1982.</li>
+          <li>Hepatitis B is a viral infection that attacks the liver and can cause both acute and chronic disease.</li>
+          <li>The virus is most commonly transmitted from mother to child at birth, in early childhood, or through contact with blood or other body fluids during unprotected sex, unsafe injections, or exposure to sharp instruments.</li>
+          <li>In 2022, an estimated 254 million people were living with chronic hepatitis B, with 1.2 million new infections each year.</li>
+          <li>Approximately 1.1 million deaths occurred in 2022, mainly from cirrhosis or hepatocellular carcinoma.</li>
+          <li>Safe and effective vaccines are available to prevent hepatitis B.</li>
         </ul>
 
         <h3>Overview</h3>
-        <p>Hepatitis B virus (HBV) can lead to rapid acute illness or long‑term chronic infection. Chronic HBV poses a significant risk of cirrhosis and hepatocellular carcinoma. The highest burden is in the Western Pacific and African regions.</p>
-
-        <h3>Transmission</h3>
-        <p>The virus is commonly transmitted perinatally, in early childhood, through unprotected sex, unsafe injections, or contact with infected blood. HBV remains infectious for at least seven days outside the body, with an incubation period of 30‑180 days.</p>
-
-        <h3>Symptoms</h3>
+        <p>Hepatitis B is a liver infection caused by the hepatitis B virus (HBV). The infection can be acute (short‑term) or chronic (long‑term) and can lead to cirrhosis or liver cancer. The virus spreads through contact with infected body fluids (blood, saliva, vaginal secretions, semen) and from mother to infant at birth. Vaccination shortly after birth, followed by booster doses, provides near‑complete protection. The Western Pacific and African regions bear the highest burden, with millions of chronic infections worldwide.</p>
         <ul>
-          <li>Jaundice (yellow skin/eyes)</li>
-          <li>Dark urine</li>
-          <li>Extreme fatigue</li>
-          <li>Nausea, vomiting, or abdominal pain</li>
+          <li>Western Pacific: 97 million chronically infected</li>
+          <li>African Region: 65 million</li>
+          <li>South‑East Asia: 61 million</li>
+          <li>Eastern Mediterranean: 15 million</li>
+          <li>European Region: 11 million</li>
+          <li>Americas: 5 million</li>
         </ul>
 
-        <h3>Diagnosis & Treatment</h3>
-        <p>Laboratory tests confirm HBV infection and differentiate acute from chronic cases. Chronic HBV can be managed with antivirals such as tenofovir or entecavir to slow progression and reduce liver cancer risk.</p>
+        <h3>Transmission</h3>
+        <p><strong>High‑endemic areas:</strong> HBV is most often transmitted from mother to child (perinatal) or through horizontal exposure to infected blood in early childhood. Chronic infection develops in ~95 % of infants infected this way, versus <5 % of adults.</p>
+        <ul>
+          <li>Needle sticks, tattoos, piercings</li>
+          <li>Exposure to infected blood or body fluids (saliva, menstrual blood, vaginal secretions, semen)</li>
+          <li>Reuse of contaminated needles/syringes in healthcare settings or among people who inject drugs</li>
+          <li>Sexual transmission (higher risk in unvaccinated individuals with multiple partners)</li>
+        </ul>
+        <p>HBV can survive outside the body for at least 7 days. Incubation: 30–180 days; the virus becomes detectable 30–60 days post‑infection and may persist, leading to chronic hepatitis B.</p>
+
+        <h3>Symptoms</h3>
+        <p>Most newly infected individuals are asymptomatic. Acute symptoms (lasting weeks) can include jaundice, dark urine, fatigue, nausea, vomiting, and abdominal pain. Severe acute hepatitis can lead to liver failure and death. Chronic hepatitis B may progress to cirrhosis or liver cancer.</p>
+
+        <h3>HBV–HIV Coinfection</h3>
+        <ul>
+          <li>~1 % of people with HBV (≈2.7 million) are also infected with HIV.</li>
+          <li>Global HBV prevalence among people with HIV: 7.4 %.</li>
+          <li>WHO recommends HIV treatment for all diagnosed individuals; tenofovir in first‑line regimens is also active against HBV.</li>
+        </ul>
+
+        <h3>Diagnosis</h3>
+        <p>HBV cannot be distinguished from other hepatitis viruses by symptoms alone; laboratory testing is essential. Blood tests determine acute vs. chronic infection and monitor liver damage. Liver fibrosis can be assessed by clinical exam, ultrasound, or elastography. All donated blood should be tested for HBV.</p>
+        <ul>
+          <li>2022: Only 13 % of people with HBV knew their status; 3 % (7 million) were on treatment.</li>
+          <li>Chronic HBV in children under 5 has dropped from ≈5 % (pre‑vaccine era) to <1 % in 2019.</li>
+        </ul>
+        <p><strong>Testing recommendations:</strong> In areas with >2 % HBsAg prevalence, offer universal adult testing. Prioritize blood donors, pregnant women, and high‑risk groups (migrants from endemic areas, close contacts, healthcare workers, people who inject drugs, prisoners, men who have sex with men, sex workers, people with HIV).</p>
+
+        <h3>Treatment</h3>
+        <p>No specific therapy exists for acute hepatitis B; care focuses on comfort, hydration, and nutrition. Chronic HBV can be treated with oral antivirals such as tenofovir or entecavir, which slow cirrhosis, reduce liver cancer risk, and improve survival. Most patients require lifelong therapy. Updated WHO guidelines recommend treatment for >50 % of chronic HBV cases, depending on context.</p>
+        <p><strong>Liver cancer management:</strong> In low‑income settings, most patients present late and die within months. In high‑income countries, earlier detection allows surgery, chemotherapy, or liver transplantation.</p>
 
         <h3>Prevention</h3>
-        <p>Newborn vaccination within 24 hours of birth, followed by booster doses, provides lifelong protection against HBV.</p>
+        <ul>
+          <li>Birth dose of HBV vaccine within 24 hours, followed by 2–3 additional doses ≥4 weeks apart.</li>
+          <li>Booster doses generally unnecessary after the 3‑dose series; protection lasts ≥20 years, likely lifelong.</li>
+          <li>Antiviral therapy plus vaccination prevents mother‑to‑child transmission.</li>
+          <li>Safer sex practices, avoiding needle sharing, proper hand hygiene, and vaccination of healthcare workers further reduce transmission.</li>
+        </ul>
+
+        <h3>WHO Action</h3>
+        <p>The Global Health Sector Strategies on HIV, Viral Hepatitis, and STIs (2022–2030) aim to eliminate chronic HBV and HCV as public health threats by 2030, emphasizing prevention, testing, and treatment with a focus on high‑risk populations and inequities. World Hepatitis Day 2023 adopted the theme "One Life, One Liver" to underscore liver health and the urgency of scaling up HBV elimination efforts.</p>
       </div>
     </section>
 
@@ -169,24 +208,29 @@
     <section id="contact">
       <div class="container" style="max-width:800px">
         <h2>Contact Us</h2>
-        <p>
-          Prof. Gilles Wandeler – <a href="mailto:gilles.wandeler@unibe.ch">gilles.wandeler@unibe.ch</a><br>
-          Prof. Moussa Seydi – <a href="mailto:seydi.moussa@gmail.com">seydi.moussa@gmail.com</a><br>
-          Dr. Adrià Ramirez Mena – <a href="mailto:adrià.ramirez@posteo.net">adrià.ramirez@posteo.net</a><br>
-          Ms. Bintou Fall – <a href="mailto:bintoufall2298@gmail.com">bintoufall2298@gmail.com</a>
-        </p>
+        <ul>
+          <li><strong>Prof. Gilles Wandeler</strong> – Head, Infectious Diseases, Bern University Hospital – <a href="mailto:gilles.wandeler@unibe.ch">gilles.wandeler@unibe.ch</a></li>
+          <li><strong>Prof. Moussa Seydi</strong> – Head, Infectious Diseases, CHNU Fann, Dakar – <a href="mailto:seydi.moussa@gmail.com">seydi.moussa@gmail.com</a></li>
+          <li><strong>Dr. Adrià Ramirez Mena</strong> – Researcher in Epidemiology, University of Bern – <a href="mailto:adri%C3%A0.ramirez@posteo.net">adrià.ramirez@posteo.net</a></li>
+          <li><strong>Bintou Fall, MSc</strong> – Biologist & Research Assistant, Infectious Diseases, CHNU Fann, Dakar – <a href="mailto:bintoufall2298@gmail.com">bintoufall2298@gmail.com</a></li>
+        </ul>
       </div>
     </section>
   </main>
 
-  <!-- Chatbot button -->
+  <!-- Chatbot floating button & window -->
   <button class="chat-btn" onclick="toggleChat()">💬</button>
-
-  <!-- Chatbot window -->
   <div id="chatWin" class="chat-window">
-    <div class="chat-header">SEN‑B Bot</div>
+    <div class="chat-header">SEN-B Bot</div>
     <div id="chatMsgs" class="chat-messages"></div>
     <div class="chat-input">
-      <input id="chatInput" type="text" placeholder="Type your question here…">
+      <input id="chatInput" type="text" placeholder="Type your question…">
       <button onclick="sendChat()">Send</button>
-    </
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 SEN-B Project – All rights reserved
+  </footer>
+</body>
+</html>
